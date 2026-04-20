@@ -51,10 +51,37 @@
     background-color: white;
 }
 
+.EditorPanel {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2em;
+    padding: 1em 2em;
+    gap: 1.25em;
+    border: 1px solid var(--bg-main);
+    max-width: fit-content;
+}
+
+.EditorPanel button {
+    background-color: var(--bg-main);
+    border: 0;
+    border-radius: 3px;
+    font-size: 1rem;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.EditorPanel button:hover {
+    background-color: #333333;
+}
+
 .SaveBtn {
     display: block;
     font-size: 1.1rem;
-    margin: 3em auto;
+    margin: 2.5em auto;
     padding: 0.5em 2em;
     cursor: pointer;
     border: 2px solid var(--bg-main);

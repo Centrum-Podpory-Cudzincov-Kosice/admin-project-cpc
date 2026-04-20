@@ -3,6 +3,24 @@
   --foreground: #171717;
 }
 
+root {
+  font-size: 14px;
+}
+
+/* Tablet styles */
+@media (max-width: 1024px) {
+  root {
+    font-size: 16px;
+  }
+}
+
+/* Very large screens*/
+@media (min-width: 1400px) {
+  root {
+    font-size: 18px;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;

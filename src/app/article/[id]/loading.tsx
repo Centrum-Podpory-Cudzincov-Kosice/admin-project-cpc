@@ -1,5 +1,9 @@
 import {ArticleLoading} from "cpc-shared";
 
 export default function Loading() {
-    return <ArticleLoading/>;
+    return (
+        <div style={{marginTop: "7em"}}>
+            <ArticleLoading/>
+        </div>
+    );
 }

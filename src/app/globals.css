@@ -86,6 +86,14 @@ button:has(.white-bg) {
   box-sizing: border-box;
 }
 
+.not-selectable, button {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
 .primaryBtn {
   font-size: 1.1rem;
   padding: 0.5em 2em;

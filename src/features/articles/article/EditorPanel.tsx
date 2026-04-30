@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "../articles.module.css";
+import styles from "../article/article.module.css";
 import {Editor} from "@tiptap/core";
 
 export default function EditorPanel({editor}: {

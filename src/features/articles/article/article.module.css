@@ -1,0 +1,129 @@
+.articleHeading {
+    display: flex;
+    justify-content: space-between;
+}
+
+.addImgInput {
+    display: none;
+}
+
+.addImgBtn {
+    min-width: 10em;
+}
+
+.languageSwitcher {
+    position: relative;
+    height: 1.5em;
+    margin: 1em;
+}
+
+.languageSwitcher svg {
+    position: relative;
+    z-index: 2;
+    transition: fill 0.5s ease-in-out;
+}
+
+.languageSwitcher:hover svg {
+    fill: #000000;
+    cursor: auto;
+}
+
+.languagesContainer {
+    position: absolute;
+    top: -0.5em;
+    right: -0.75em;
+    padding: 0.1em 0.3em;
+    margin-right: 0.5em;
+    border-radius: 12px;
+    z-index: 1;
+    overflow: hidden;
+    transition: max-width 0.5s ease,
+    max-height 0.5s ease,
+    opacity 0.6s ease-in-out,
+    background-color 0.5s ease,
+    color 0.3s ease-in-out;
+    max-height: 2.25em;
+
+    background-color: var(--bg-main);
+    color: white;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+}
+
+.languageSwitcher:hover .languagesContainer {
+    opacity: 1;
+    max-height: 10em;
+    max-width: 6em;
+}
+
+.selectedContainer {
+    position: absolute;
+    z-index: 0;
+    height: 2em;
+    background: #cacaca;
+    border-radius: 25px;
+    margin: 0 0.25em;
+    transition: transform 0.3s ease-in-out;
+    transform: translateY(0);
+}
+
+.languageVariant {
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+    cursor: pointer;
+    padding: 0.5em;
+    position: relative;
+    z-index: 3;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.languageVariant p {
+    margin: 0;
+}
+
+.languageVariant img {
+    width: 1.5em;
+    height: 1em;
+}
+
+.EditorPanel {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 2em;
+    padding: 1em 2em;
+    gap: 1.25em;
+    border: 1px solid var(--bg-main);
+    max-width: fit-content;
+}
+
+.EditorPanel button {
+    background-color: var(--bg-main);
+    border: 0;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.EditorPanel button:hover {
+    background-color: #333333;
+}
+
+.SaveBtn {
+    display: block;
+    font-size: 1.1rem;
+    margin: 2.5em auto;
+    padding: 0.5em 2em;
+    cursor: pointer;
+    border: 2px solid var(--bg-main);
+    background-color: var(--bg-main);
+    transition: all 0.2s ease-in-out;
+}
+
+.SaveBtn:hover {
+    background-color: var(--text-main);
+    color: var(--bg-main);
+}

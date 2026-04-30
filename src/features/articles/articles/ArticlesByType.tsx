@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "../articles.module.css";
+import styles from "./articles.module.css";
 import {ArticleType} from "cpc-shared";
 import {useState} from "react";
 import clsx from "clsx";

@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "@/features/articles/articles.module.css";
+import styles from "@/features/articles/articles/articles.module.css";
 import {OrbitProgress} from "react-loading-indicators";
 import {useEffect, useState} from "react";
 import {ArticleType} from "cpc-shared";
@@ -20,7 +20,7 @@ export default function ArticlesList({type}: { type: ArticleType }) {
             try {
                 setLoading(true);
 
-                const res = await axios.get(`${process.env.NEXT_PUBLIC_SITE_URL}/api/articles?type=${type}`);
+                const res = await axios.get(`/api/articles?type=${type}`);
 
                 setArticles(res.data);
             } catch (e) {

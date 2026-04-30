@@ -1,0 +1,69 @@
+.tableRow {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+    align-items: center;
+    justify-items: start;
+    gap: 4em;
+}
+
+.tableRow .date {
+    white-space: nowrap;
+}
+
+.articles h1 {
+    text-align: center;
+    margin: 1em 0 1.5em 0;
+}
+
+.ArticlesList {
+    max-width: 85dvw;
+    margin: 0 auto;
+}
+
+.selectedBtn {
+    background-color: white !important;
+    color: black;
+}
+
+.typesButtons {
+    display: flex;
+    justify-content: space-around;
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 1em 0;
+    margin-bottom: 1em;
+}
+
+.typesButtons button {
+    font-size: 1.1rem;
+    border: 0;
+    border-radius: 5px;
+    padding: 0.75em 2em;
+    cursor: pointer;
+    background-color: #0a0a0a;
+    transition: all 0.15s ease-in-out;
+}
+
+.typesButtons button:hover {
+    box-shadow: inset 0 0 0 2px white;
+}
+
+.ArticlesList ul {
+    padding-inline-start: 0;
+}
+
+.ArticlesList .loading {
+    display: block;
+    margin: 12% auto;
+    max-width: fit-content;
+}
+
+.ArticlesList .error {
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.ArticlesPage {
+    background-color: white;
+}

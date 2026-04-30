@@ -5,31 +5,35 @@ import StarterKit from "@tiptap/starter-kit";
 import {marked} from "marked";
 import {SaveBtn} from "@/features/articles/article/SaveBtn";
 import EditorPanel from "@/features/articles/article/EditorPanel";
-import {useEffect, useMemo} from "react";
+import {useEffect} from "react";
 
-export function TipTapEditorContent({text, lang, articleId}: {
+export function TipTapEditorContent({text, articleId, onChange}: {
     text: string | null,
-    lang: string,
-    articleId: string
+    articleId: string,
+    onChange: (value: string) => void
 }) {
-    const parsed = useMemo(() => {
-        if (!text) return "";
-        return marked.parse(text)
-    }, [text]);
-
     const editor = useEditor({
         extensions: [StarterKit],
-        content: parsed,
+        content: text ? marked.parse(text) : "",
         immediatelyRender: false,
+
+        onUpdate({editor}) {
+            onChange(editor.getHTML());
+        }
     });
 
     useEffect(() => {
-        return () => {
-            editor?.destroy();
-        };
-    }, [editor]);
+        if (!editor) return;
 
-    if (!editor) return null;
+        const current = editor.getHTML();
+        const incoming = text ? marked.parse(text) : "";
+
+        if (current !== incoming) {
+            editor.commands.setContent(incoming, {
+                emitUpdate: false,
+            });
+        }
+    }, [text, editor]);
 
     return (
         <div>
@@ -37,7 +41,6 @@ export function TipTapEditorContent({text, lang, articleId}: {
             <EditorContent editor={editor}/>
             <SaveBtn articleId={articleId}
                      editor={editor}
-                     lang={lang}
             />
         </div>
     );

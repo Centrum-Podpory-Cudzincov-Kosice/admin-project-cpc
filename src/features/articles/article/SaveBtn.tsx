@@ -1,8 +1,9 @@
 "use client";
 
-import styles from "../articles.module.css";
+import styles from "../article/article.module.css";
 import {Editor} from "@tiptap/core";
 import TurndownService from "turndown";
+import {useLanguage} from "@/app/providers/LanguageProvider";
 
 const turndown = new TurndownService({
     headingStyle: "atx",
@@ -23,26 +24,17 @@ turndown.addRule("lineBreak", {
     },
 });
 
-export function SaveBtn({
-                            editor,
-                            articleId,
-                            lang,
-                        }: {
+export function SaveBtn({editor, articleId}: {
     editor: Editor | null;
     articleId: string;
-    lang: string;
 }) {
+    const {lang} = useLanguage();
+
     const handleSave = async () => {
         if (!editor) return;
 
         const html = editor.getHTML();
         const markdown = turndown.turndown(html);
-
-        console.log("HTML OUTPUT:");
-        console.log(html);
-
-        console.log("MARKDOWN OUTPUT:");
-        console.log(JSON.stringify(markdown));
 
         await fetch(`/api/articles/${articleId}`, {
             method: "POST",
@@ -51,10 +43,22 @@ export function SaveBtn({
             },
             body: JSON.stringify({
                 text: markdown,
-                lang,
+                lang
             }),
         });
     };
+
+    let uploadBtnText;
+    switch (lang) {
+        case "en":
+            uploadBtnText = "Upload";
+            break;
+        case "uk":
+            uploadBtnText = "Зберегти";
+            break;
+        default:
+            uploadBtnText = "Uložiť"
+    }
 
     return (
         <button
@@ -62,7 +66,7 @@ export function SaveBtn({
             className={styles.SaveBtn}
             onClick={handleSave}
         >
-            Uložiť
+            {uploadBtnText}
         </button>
     );
 }

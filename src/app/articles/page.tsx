@@ -1,4 +1,4 @@
-import styles from "@/features/articles/articles.module.css";
+import styles from "@/features/articles/articles/articles.module.css";
 import ArticlesByType from "@/features/articles/articles/ArticlesByType";
 import {redirect} from "next/navigation";
 import {createClient} from "@/lib/supabase/server";

@@ -46,7 +46,7 @@
     padding: 0.5em 2em;
 
     cursor: pointer;
-    border-radius: 25px;
+    border-radius: 5px;
     border: 1px solid var(--text-main);
     background-color: var(--bg-main);
 }

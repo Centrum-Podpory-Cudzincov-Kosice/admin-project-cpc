@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "../articles.module.css";
+import styles from "../article/article.module.css";
 import {ChangeEvent} from "react";
 import axios from "axios";
 import clsx from "clsx";

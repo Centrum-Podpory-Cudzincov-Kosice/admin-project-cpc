@@ -1,20 +1,23 @@
-"use client";
+import { createClient } from "@/lib/supabase/server";
+import {notFound} from "next/navigation";
+import Article from "@/features/articles/article/Article";
 
-import {useArticles} from "@/app/providers/ArticlesProvider";
-import {useParams} from "next/navigation";
-import {ArticleLoading} from "cpc-shared";
-import Article from "@/features/articles/ui/article/Article";
+export default async function ArticlePage({params}: {
+    params: Promise<{ id: string }>;
+}) {
+    const { id } = await params;
 
-export default function ArticlePage() {
-    const params = useParams();
-    const articleId = params.id! as string;
-    if (!articleId) throw new Error("No article found");
+    if (!id) notFound();
 
-    const {articlesMap, loading} = useArticles();
+    const supabase = await createClient();
 
-    const article = articlesMap.get(articleId);
+    const { data, error } = await supabase
+        .from("articles")
+        .select("*")
+        .eq("id", id)
+        .single();
 
-    if (!article && !loading) throw new Error("No article found");
+    if (error || !data) notFound();
 
-    return !article ? <ArticleLoading/> : <Article articleData={article} />;
+    return <Article articleData={data} />;
 }

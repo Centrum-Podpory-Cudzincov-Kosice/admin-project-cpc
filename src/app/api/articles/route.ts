@@ -1,13 +1,22 @@
 import { createClient } from "@/lib/supabase/server";
 import {NextResponse} from "next/server";
 
-export async function GET() {
+export async function GET(req: Request) {
+    const { searchParams } = new URL(req.url);
+    const type = searchParams.get("type");
+
     const supabase = await createClient();
 
-    const { data, error } = await supabase
+    let query = supabase
         .from("articles")
-        .select("*")
+        .select("id, title_sk, date")
         .order("date", { ascending: false });
+
+    if (type) {
+        query = query.eq("type", type);
+    }
+
+    const { data, error } = await query;
 
     if (error) {
         return Response.json({ error }, { status: 500 });
@@ -19,9 +28,7 @@ export async function GET() {
 export async function POST(req: Request) {
     const supabase = await createClient();
 
-    const {
-        data: { user },
-    } = await supabase.auth.getUser();
+    const {data: { user }} = await supabase.auth.getUser();
 
     if (!user) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

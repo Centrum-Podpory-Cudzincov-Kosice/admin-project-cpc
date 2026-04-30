@@ -3,21 +3,33 @@
 import {useEditor, EditorContent} from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import {marked} from "marked";
-import {SaveBtn} from "@/features/articles/ui/article/SaveBtn";
-import EditorPanel from "@/features/articles/ui/article/EditorPanel";
+import {SaveBtn} from "@/features/articles/article/SaveBtn";
+import EditorPanel from "@/features/articles/article/EditorPanel";
+import {useEffect, useMemo} from "react";
 
 export function TipTapEditorContent({text, lang, articleId}: {
-    text: string,
+    text: string | null,
     lang: string,
-    articleId?: string
+    articleId: string
 }) {
-    if (!articleId) throw new Error("No article id found");
+    const parsed = useMemo(() => {
+        if (!text) return "";
+        return marked.parse(text)
+    }, [text]);
 
     const editor = useEditor({
         extensions: [StarterKit],
-        content: marked.parse(text),
+        content: parsed,
         immediatelyRender: false,
     });
+
+    useEffect(() => {
+        return () => {
+            editor?.destroy();
+        };
+    }, [editor]);
+
+    if (!editor) return null;
 
     return (
         <div>

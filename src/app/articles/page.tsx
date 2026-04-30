@@ -1,5 +1,5 @@
 import styles from "@/features/articles/articles.module.css";
-import ArticlesList from "@/features/articles/ui/articles/ArticlesList";
+import ArticlesByType from "@/features/articles/articles/ArticlesByType";
 import {redirect} from "next/navigation";
 import {createClient} from "@/lib/supabase/server";
 import LogOut from "@/features/auth/LogOut";
@@ -29,7 +29,7 @@ export default async function ArticlesPage() {
                 Članky
             </h1>
 
-            <ArticlesList/>
+            <ArticlesByType/>
         </main>
     );
 }

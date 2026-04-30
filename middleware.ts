@@ -1,4 +1,4 @@
-import { createServerClient } from '@supabase/ssr';
+import {createServerClient} from '@supabase/ssr';
 import {NextRequest, NextResponse} from 'next/server';
 
 export async function middleware(req: NextRequest) {
@@ -11,7 +11,7 @@ export async function middleware(req: NextRequest) {
             cookies: {
                 getAll: () => req.cookies.getAll(),
                 setAll: (cookies) => {
-                    cookies.forEach(({ name, value }) =>
+                    cookies.forEach(({name, value}) =>
                         req.cookies.set(name, value)
                     );
                 },
@@ -19,9 +19,7 @@ export async function middleware(req: NextRequest) {
         }
     );
 
-    const {
-        data: { user },
-    } = await supabase.auth.getUser();
+    const {data: {user}} = await supabase.auth.getUser();
 
     if (req.nextUrl.pathname.startsWith('/admin')) {
         if (!user) {
